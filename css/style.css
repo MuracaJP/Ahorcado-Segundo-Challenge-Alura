@@ -1,0 +1,143 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;    
+    background-color: hsl(227, 60%, 97%);
+}
+
+:root {
+    --main-color: hsl(213, 84%, 24%);
+    --bgColor: hsl(227, 60%, 97%);
+}
+
+.logo {
+    margin-top: 40px;
+    margin-left: 100px;
+}
+
+.canvasContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5vh;
+}
+
+.botonesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25vh;
+    text-align: center;
+}
+
+.iniciarBtn {
+    width: 320px;
+    height: 115px;
+    border-style: none;
+    font-size: 18px;
+    background-color: var(--main-color);
+    border-radius: 25px;
+    color: var(--bgColor);
+    cursor: pointer;
+}
+
+.agregarPalabraBtn {
+    margin-top: 40px;
+    width: 280px;
+    height: 67px;
+    border-style: none;
+    border: 1px solid var(--main-color);
+    background-color: var(--bgColor);
+    color: var(--main-color);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.botonesEnJuego {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10vh;
+    text-align: center;
+}
+
+.nuevoJuegoBtn {
+    width: 322px;
+    height: 67px;
+    border-style: none;
+    margin-right: 1vw;
+    background-color: var(--main-color);
+    color: var(--bgColor);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.desistirBtn {
+    width: 322px;
+    height: 67px;
+    border-style: none;
+    margin-right: 1vw;
+    border: 1px solid var(--main-color);
+    background-color: var(--bgColor);
+    color: var(--main-color);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.palabraContainer {
+    margin-bottom: 5vh;
+    display: flex;
+    justify-content: center;
+    color: var(--main-color);
+}
+
+.letras {
+    width: 75px;
+    min-height: 75px;
+    margin: 10px 15px;
+    font-size: 40px;
+    text-align: center;
+    border-bottom: 3px solid var(--main-color);
+}
+
+.mensaje {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.fallosContainer {
+    margin-bottom: 10vh;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    right: 200px;
+    font-size: 24px;
+    color: var(--main-color);
+}
+
+.errores {
+    margin-left: 5px;
+    color: tomato;
+}
+
+h6 {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--main-color);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.gitHubLink {
+    text-decoration: none;
+    color: var(--main-color);
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.esconder {
+    display: none;
+}

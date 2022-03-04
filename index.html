@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ahorcado - 2do Challenge Alura</title>
+</head>
+
+<body>
+
+    <div class="logo Alura">
+        <a href="https://www.aluracursos.com/" target="blank"><img src="images/logo_Alura.png"></a>
+    </div>
+
+    <div class="canvasContainer">
+        <canvas id="canvas" class="canvas esconder" width="800px" height="405px"></canvas>
+    </div>
+    
+    
+    <div id="palabraContainer" class="palabraContainer esconder"></div>
+
+    <div id="fallosContainer" class="fallosContainer esconder">
+        <h2 class="incorrectas">Letras incorrectas:</h2>
+    </div>
+    
+    <div id="botonesContainer" class="botonesContainer">
+        <button id="iniciarBtn" class="iniciarBtn">Iniciar juego</button>
+        <button id="agregarPalabraBtn" class="agregarPalabraBtn">Agregar nueva palabra</button>
+    </div>
+
+    <div id="mensaje" class="mensaje"></div>
+    
+    <div id="botonesEnJuego" class="botonesEnJuego esconder">
+        <button id="nuevoJuegoBtn" class="nuevoJuegoBtn">Nuevo juego</button>
+        <button id="desistirBtn" class="desistirBtn">Desistir</button>
+    </div>
+
+    
+
+    <h6>Desarrollado por:
+        <a href="https://github.com/MuracaJP" class="gitHubLink" target="blank">Muracajp</a>
+    </h6>
+
+    <script src="js/ahorcado.js"></script>
+    <script src="js/canvas.js"></script>
+
+</body>
+
+</html>
