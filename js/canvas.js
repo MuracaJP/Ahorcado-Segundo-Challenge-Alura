@@ -82,4 +82,9 @@ function muerto() {
     mover(485, 115);
     linea(475, 125);
     dibujar();
+
+    //Mensaje de fin de juego
+    mensajeContainer.classList.remove("esconder");
+    mensajeContainer.textContent = "¡Ahorcado! Fin del juego. La palabra secreta era: " + palabraEnJuego;
+    mensajeContainer.style = "color:red";
 }

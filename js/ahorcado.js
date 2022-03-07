@@ -3,10 +3,13 @@ const caracteresValidos = new RegExp("[A-ZÑ]");
 
 //Variables
 var palabraEnJuego = palabraAleatoria();
+console.log(palabraEnJuego.length);
 var palabraSeparada = separarPalabra();
+console.log(palabraSeparada.length);
 var inputValido;
 var letrasIngresadas = [];
-var contadorErrores;
+var letrasCorrectas = [];
+var contadorErrores = 0;
 
 //Selectores
 var iniciarBtn = document.getElementById("iniciarBtn");
@@ -14,6 +17,7 @@ var botonesPrincipal = document.getElementById("botonesContainer");
 var botonesEnJuego = document.getElementById("botonesEnJuego");
 var palabraContainer = document.getElementById("palabraContainer");
 var letrasIncorrectasContainer = document.getElementById("fallosContainer");
+var mensajeContainer = document.getElementById("mensaje");
 
 //Genera la palabra a adivinar
 function palabraAleatoria() {
@@ -72,7 +76,7 @@ function validarTeclaPresionada(e) {
 function comprobarAcierto(e) {
     let teclaPresionada = e.key.toUpperCase();
     validarTeclaPresionada(e);
-    
+
     //Comprueba que la letra ingresada no sea repetida
     if (letrasIngresadas.includes(teclaPresionada)) {
         alert(teclaPresionada + " ya fué ingresada, intente con otra letra");
@@ -80,48 +84,66 @@ function comprobarAcierto(e) {
     } else {
         letrasIngresadas.push(teclaPresionada);
     }
-    
+
     let letrasContainer = document.getElementsByTagName("p");
 
     for (let i = 0; i < letrasContainer.length; i++) {
         let letra = letrasContainer[i].textContent;
+
         if (letra === teclaPresionada) {
             letrasContainer[i].classList.remove("esconder");
+            letrasCorrectas.push(teclaPresionada);
+            console.log(letrasCorrectas.length);
+            victoria();
+
         } else if (!palabraEnJuego.includes(teclaPresionada)) {
             let error = document.createElement("p");
             error.textContent = teclaPresionada;
             error.classList.add("errores");
             letrasIncorrectasContainer.appendChild(error);
             contadorErrores++;
-            return
+            dibujandoAhorcado(contadorErrores);
+            return;
         }
     }
 }
 
-//Pinta el ahorcado según la cantidad de errores 
-switch (contadorErrores) {
-    case 1:
-        cabeza();
-        break;
-    case 2:
-        torso();
-        break;
-    case 3:
-        manoD();
-        break;
-    case 4:
-        manoI();
-        break;
-    case 5:
-        piernaD();
-        break;
-    case 6:
-        PiernaI();
-        break;
-    case 7:
-        muerto();
-        break;
-    default:
-        break;
+//Dibuja al ahorcado en funciín de los errores cometidos
+function dibujandoAhorcado(contadorErrores) {
+    switch (contadorErrores) {
+        case 1:
+            cabeza();
+            break;
+        case 2:
+            torso();
+            break;
+        case 3:
+            manoD();
+            break;
+        case 4:
+            manoI();
+            break;
+        case 5:
+            piernaD();
+            break;
+        case 6:
+            PiernaI();
+            break;
+        case 7:
+            muerto();
+            break;
+        default:
+            break;
+    }
 }
 
+function victoria() {
+    if (letrasCorrectas.length === palabraEnJuego.length) {
+        console.log(letrasCorrectas.length);
+        console.log(palabraAleatoria.length);
+
+        mensajeContainer.classList.remove("esconder");
+        mensajeContainer.textContent = "¡Ganaste, felicidades!";
+        mensajeContainer.style = "color:green";
+    }
+}
