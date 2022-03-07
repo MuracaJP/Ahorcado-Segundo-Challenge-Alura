@@ -3,13 +3,11 @@ const caracteresValidos = new RegExp("[A-ZÑ]");
 
 //Variables
 var palabraEnJuego = palabraAleatoria();
-console.log(palabraEnJuego.length);
 var palabraSeparada = separarPalabra();
-console.log(palabraSeparada.length);
-var inputValido;
 var letrasIngresadas = [];
 var letrasCorrectas = [];
 var contadorErrores = 0;
+var triunfo = false;
 
 //Selectores
 var iniciarBtn = document.getElementById("iniciarBtn");
@@ -18,6 +16,8 @@ var botonesEnJuego = document.getElementById("botonesEnJuego");
 var palabraContainer = document.getElementById("palabraContainer");
 var letrasIncorrectasContainer = document.getElementById("fallosContainer");
 var mensajeContainer = document.getElementById("mensaje");
+var nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
+var desistirBtn = document.getElementById("desistirBtn")
 
 //Genera la palabra a adivinar
 function palabraAleatoria() {
@@ -25,7 +25,7 @@ function palabraAleatoria() {
     return palabra;
 }
 
-//Convierte la palbra en array
+//Convierte la palabra en array
 function separarPalabra() {
     var palabraSeparada = palabraEnJuego.split("");
     return palabraSeparada;
@@ -45,7 +45,10 @@ palabraSeparada.forEach(letra => {
     contenedor.appendChild(guiones);
 })
 
+
 iniciarBtn.addEventListener("click", iniciarJuego);
+
+
 
 //Función principal
 function iniciarJuego() {
@@ -62,6 +65,7 @@ function prepararTablero() {
     tablero();
 }
 
+//Detecta cuando se presiona una tecla y ejecuta una función
 document.addEventListener("keypress", comprobarAcierto);
 
 //Valida el input, si no es valida muestra mensaje
@@ -75,40 +79,42 @@ function validarTeclaPresionada(e) {
 //Comprueba si la letra ingresada es parte de la palabra o no
 function comprobarAcierto(e) {
     let teclaPresionada = e.key.toUpperCase();
-    validarTeclaPresionada(e);
 
-    //Comprueba que la letra ingresada no sea repetida
-    if (letrasIngresadas.includes(teclaPresionada)) {
-        alert(teclaPresionada + " ya fué ingresada, intente con otra letra");
-        return;
-    } else {
-        letrasIngresadas.push(teclaPresionada);
-    }
-
-    let letrasContainer = document.getElementsByTagName("p");
-
-    for (let i = 0; i < letrasContainer.length; i++) {
-        let letra = letrasContainer[i].textContent;
-
-        if (letra === teclaPresionada) {
-            letrasContainer[i].classList.remove("esconder");
-            letrasCorrectas.push(teclaPresionada);
-            console.log(letrasCorrectas.length);
-            victoria();
-
-        } else if (!palabraEnJuego.includes(teclaPresionada)) {
-            let error = document.createElement("p");
-            error.textContent = teclaPresionada;
-            error.classList.add("errores");
-            letrasIncorrectasContainer.appendChild(error);
-            contadorErrores++;
-            dibujandoAhorcado(contadorErrores);
+    //Comprueba que no se haya ganado ni perdido
+    if (contadorErrores < 7 && !triunfo) {
+        //Comprueba que la letra ingresada no sea repetida
+        validarTeclaPresionada(e);
+        if (letrasIngresadas.includes(teclaPresionada)) {
+            alert(teclaPresionada + " ya fué ingresada, intente con otra letra");
             return;
+        } else {
+            letrasIngresadas.push(teclaPresionada);
+        }
+
+        let letrasContainer = document.getElementsByTagName("p");
+
+        for (let i = 0; i < letrasContainer.length; i++) {
+            let letra = letrasContainer[i].textContent;
+
+            if (letra === teclaPresionada) {
+                letrasContainer[i].classList.remove("esconder");
+                letrasCorrectas.push(teclaPresionada);
+                victoria();
+            } else if (!palabraEnJuego.includes(teclaPresionada)) {
+                let error = document.createElement("p");
+                error.textContent = teclaPresionada;
+                error.classList.add("errores");
+                letrasIncorrectasContainer.appendChild(error);
+                contadorErrores++;
+                dibujandoAhorcado(contadorErrores);
+                return;
+            }
         }
     }
+
 }
 
-//Dibuja al ahorcado en funciín de los errores cometidos
+//Dibuja al ahorcado en función de los errores cometidos
 function dibujandoAhorcado(contadorErrores) {
     switch (contadorErrores) {
         case 1:
@@ -137,6 +143,7 @@ function dibujandoAhorcado(contadorErrores) {
     }
 }
 
+//Función para mostrar mensaje de triunfo
 function victoria() {
     if (letrasCorrectas.length === palabraEnJuego.length) {
         console.log(letrasCorrectas.length);
@@ -145,5 +152,21 @@ function victoria() {
         mensajeContainer.classList.remove("esconder");
         mensajeContainer.textContent = "¡Ganaste, felicidades!";
         mensajeContainer.style = "color:green";
+        triunfo = true;
     }
+}
+
+//Detecta click en botón "desistir"
+desistirBtn.addEventListener("click", desistir);
+
+function desistir() {
+    mensajeContainer.classList.remove("esconder");
+    mensajeContainer.textContent = "La palabra secreta era: " + palabraEnJuego;
+    mensajeContainer.style = "color:red";
+    setTimeout(actualizar, 1500);
+}
+
+function actualizar() {
+    location.reload();
+    prepararTablero();
 }
