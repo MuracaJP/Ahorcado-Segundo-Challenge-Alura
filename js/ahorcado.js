@@ -10,14 +10,21 @@ var contadorErrores = 0;
 var triunfo = false;
 
 //Selectores
+//Botones
 var iniciarBtn = document.getElementById("iniciarBtn");
+var agregarPalabraBtn = document.getElementById("agregarPalabraBtn");
+var nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
+var desistirBtn = document.getElementById("desistirBtn")
+//Contenedores
+var inicio = document.getElementById("pantallaInicio");
+var pantallaJuego = document.getElementById("pantallaJuego");
 var botonesPrincipal = document.getElementById("botonesContainer");
 var botonesEnJuego = document.getElementById("botonesEnJuego");
 var palabraContainer = document.getElementById("palabraContainer");
 var letrasIncorrectasContainer = document.getElementById("fallosContainer");
 var mensajeContainer = document.getElementById("mensaje");
-var nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
-var desistirBtn = document.getElementById("desistirBtn")
+var botonesAgregar = document.getElementById("botonesAgregar");
+
 
 //Genera la palabra a adivinar
 function palabraAleatoria() {
@@ -45,10 +52,7 @@ palabraSeparada.forEach(letra => {
     contenedor.appendChild(guiones);
 })
 
-
 iniciarBtn.addEventListener("click", iniciarJuego);
-
-
 
 //Función principal
 function iniciarJuego() {
@@ -57,11 +61,8 @@ function iniciarJuego() {
 
 //Prepara la pantalla de juego
 function prepararTablero() {
-    botonesPrincipal.classList.add("esconder");
-    palabraContainer.classList.remove("esconder");
-    canvas.classList.remove("esconder");
-    botonesEnJuego.classList.remove("esconder");
-    letrasIncorrectasContainer.classList.remove("esconder");
+    inicio.classList.add("esconder");
+    pantallaJuego.classList.remove("esconder");
     tablero();
 }
 
@@ -146,9 +147,6 @@ function dibujandoAhorcado(contadorErrores) {
 //Función para mostrar mensaje de triunfo
 function victoria() {
     if (letrasCorrectas.length === palabraEnJuego.length) {
-        console.log(letrasCorrectas.length);
-        console.log(palabraAleatoria.length);
-
         mensajeContainer.classList.remove("esconder");
         mensajeContainer.textContent = "¡Ganaste, felicidades!";
         mensajeContainer.style = "color:green";
@@ -156,7 +154,21 @@ function victoria() {
     }
 }
 
-//Detecta click en botón "desistir"
+
+agregarPalabraBtn.addEventListener("click", agregarPalabra);
+
+function agregarPalabra() {
+    inicio.classList.add("esconder");
+    botonesAgregar.classList.remove("esconder");
+  
+}
+
+nuevoJuegoBtn.addEventListener("click", nuevoJuego);
+
+function nuevoJuego() {
+    actualizar();
+}
+
 desistirBtn.addEventListener("click", desistir);
 
 function desistir() {
@@ -168,5 +180,4 @@ function desistir() {
 
 function actualizar() {
     location.reload();
-    prepararTablero();
 }

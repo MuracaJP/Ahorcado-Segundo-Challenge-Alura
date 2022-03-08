@@ -82,6 +82,10 @@ function muerto() {
     mover(485, 115);
     linea(475, 125);
     dibujar();
+    pincel.closePath();
+    pincel.beginPath();
+    pincel.arc(470, 136, 5, 0, Math.PI * 2);
+    dibujar();
 
     //Mensaje de fin de juego
     mensajeContainer.classList.remove("esconder");

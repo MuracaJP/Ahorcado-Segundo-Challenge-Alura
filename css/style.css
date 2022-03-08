@@ -67,6 +67,7 @@ body {
     margin-right: 1vw;
     background-color: var(--main-color);
     color: var(--bgColor);
+    text-align: center;
     border-radius: 20px;
     cursor: pointer;
 }
@@ -79,6 +80,7 @@ body {
     border: 1px solid var(--main-color);
     background-color: var(--bgColor);
     color: var(--main-color);
+    text-align: center;
     border-radius: 20px;
     cursor: pointer;
 }
@@ -99,20 +101,20 @@ body {
     border-bottom: 3px solid var(--main-color);
 }
 
-.mensaje {
-    margin-bottom: 30px;
-    font-size: 24px;
-    text-align: center;
-}
-
 .fallosContainer {
-    margin: 50px 0;
+    margin: 40px 0;
     display: flex;
     justify-content: center;
     position: relative;
     right: 200px;
     font-size: 24px;
     color: var(--main-color);
+}
+
+.mensaje {
+    margin: 40px;
+    font-size: 32px;
+    text-align: center;
 }
 
 .errores {
@@ -123,9 +125,10 @@ body {
 h6 {
     display: flex;
     justify-content: center;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 550;
     color: var(--main-color);
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     margin: 10px 0;
@@ -139,5 +142,35 @@ h6 {
 }
 
 .esconder {
-    display: none;
+    display: none !important;
+}
+
+.botonesAgregar{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ingresePalabra{
+    margin-bottom: 400px;
+    position: relative;
+    right: 120px;
+    font-size: 32px;
+    color: var(--main-color);
+}
+
+.maxLetras{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 280px;
+    font-size: 14px;
+    color: hsl(210, 9%, 31%);
+}
+.exclamacion {
+    width: 20px;
+    margin-right: 5px;
 }
