@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;    
+    font-family: 'Inter', sans-serif;
     background-color: hsl(227, 60%, 97%);
 }
 
@@ -11,15 +11,25 @@ body {
     --bgColor: hsl(227, 60%, 97%);
 }
 
+.esconder {
+    display: none !important;
+}
+
 .logo {
     margin-top: 40px;
     margin-left: 100px;
 }
 
+.pantallaJuego {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .canvasContainer {
     display: flex;
     justify-content: center;
-    margin-bottom: 5vh;
+    margin-bottom: 50px;
 }
 
 .botonesContainer {
@@ -64,7 +74,7 @@ body {
     width: 322px;
     height: 67px;
     border-style: none;
-    margin-right: 1vw;
+    margin-right: 20px;
     background-color: var(--main-color);
     color: var(--bgColor);
     text-align: center;
@@ -86,7 +96,6 @@ body {
 }
 
 .palabraContainer {
-    margin-bottom: 5vh;
     display: flex;
     justify-content: center;
     color: var(--main-color);
@@ -102,7 +111,7 @@ body {
 }
 
 .fallosContainer {
-    margin: 40px 0;
+    margin: 20px 0;
     display: flex;
     justify-content: center;
     position: relative;
@@ -122,16 +131,46 @@ body {
     color: tomato;
 }
 
+.agregarPalabraContainer {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ingresePalabra {
+    margin-bottom: 400px;
+    position: relative;
+    right: 120px;
+    font-size: 32px;
+    color: var(--main-color);
+}
+
+.maxLetras {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 280px;
+    font-size: 14px;
+    color: hsl(210, 9%, 31%);
+}
+
+.exclamacion {
+    width: 20px;
+    margin-right: 5px;
+}
+
 h6 {
     display: flex;
     justify-content: center;
     font-size: 16px;
-    font-weight: 550;
+    font-weight: 600;
     color: var(--main-color);
     position: fixed;
     bottom: 0;
     width: 100%;
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
 .gitHubLink {
@@ -141,36 +180,93 @@ h6 {
     cursor: pointer;
 }
 
-.esconder {
-    display: none !important;
+/*Media queries*/
+/*Tablet*/
+@media (max-width: 900px){
+    .logo {
+        margin-top: 60px;
+        margin-left: 45px;
+    }
+
+    .canvas {
+        width: 600px;
+        margin: 0;
+    }
+
+    .letras {
+        margin: 10px;
+        width: 50px;
+        max-height: 20px;
+        font-size: 32px;
+    }
+
+    .fallosContainer{
+        position: relative;
+        right: 15vw;
+    }
+
+    .nuevoJuegoBtn, .desistirBtn {
+        margin-right: 20px;
+        margin-bottom: 20px;
+        width: 250px;
+        height: 55px;
+        font-size: 14px;
+    }
+
+    .agregarPalabraContainer {
+        margin-left: 50px;
+        align-items: flex-start;
+    }
+
+    .ingresePalabra {
+        margin-bottom: 300px;
+        position: initial;
+        font-size: 24px;
+    }
+
+    .maxLetras {
+        position: initial;
+    }
+
+    .botonesAgregar {
+        margin-bottom: 20px;
+    }
 }
 
-.botonesAgregar{
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+/*Celular*/
+@media (max-width: 480px){
 
-.ingresePalabra{
-    margin-bottom: 400px;
-    position: relative;
-    right: 120px;
-    font-size: 32px;
-    color: var(--main-color);
-}
+    .logo {
+        margin-top: 30px;
+        margin-left: 20px;
+    }
 
-.maxLetras{
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    right: 280px;
-    font-size: 14px;
-    color: hsl(210, 9%, 31%);
-}
-.exclamacion {
-    width: 20px;
-    margin-right: 5px;
+    .canvas {
+        width: 400px;
+    }
+
+    .letras {
+        margin: 5px;
+    }
+    .nuevoJuegoBtn, .desistirBtn {
+        margin-right: 10px;
+        width: 180px;
+        height: 40px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    .fallosContainer{
+        position: relative;
+        right: 15vw;
+    }
+
+    .agregarPalabraContainer {
+        margin-left: 20px;
+    }
+
+    .botonesAgregar {
+        flex-direction: column;
+        justify-items: center;
+    }
 }
